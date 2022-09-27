@@ -78,7 +78,7 @@
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<!-- <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
 
 
@@ -179,7 +179,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@Kaio_Rosa](https://twitter.com/Kaio_Rosa) - kaiosrosa@gmail.com
+Kaio Rosa - [@Kaio_Rosa](https://twitter.com/Kaio_Rosa) - kaiosrosa@gmail.com
 
 Project Link: [https://github.com/kaiorosa1/exercise-tracker-api](https://github.com/kaiorosa1/exercise-tracker-api)
 
