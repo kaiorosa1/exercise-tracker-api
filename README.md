@@ -75,7 +75,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
 
 <!-- <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
@@ -184,10 +184,6 @@ Kaio Rosa - [@Kaio_Rosa](https://twitter.com/Kaio_Rosa) - kaiosrosa@gmail.com
 Project Link: [https://github.com/kaiorosa1/exercise-tracker-api](https://github.com/kaiorosa1/exercise-tracker-api)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
