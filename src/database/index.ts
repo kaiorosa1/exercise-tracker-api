@@ -7,6 +7,6 @@ const AppDataSource = new DataSource(
 });
 
 
- AppDataSource.initialize();
+AppDataSource.initialize();
 
 export {AppDataSource};
