@@ -5,6 +5,6 @@ const router = Router();
 
 const userController = new UsersController();
 
-router.post('/users',userController.create);
+router.post('/users', userController.create);
 
-export {router}
+export { router }
