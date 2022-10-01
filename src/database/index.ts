@@ -5,9 +5,8 @@ const AppDataSource = new DataSource(
     {
         type: "sqlite",
         database: "./src/database/database.sqlite",
-        entities: [
-            User
-        ]
+        entities: ["./src/models/**.ts"],
+        migrations: ["./src/database/migrations/**.ts"]
     });
 
 
