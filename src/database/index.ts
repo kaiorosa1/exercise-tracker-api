@@ -1,5 +1,4 @@
 import { DataSource, EntityManager } from "typeorm";
-import { User } from "../models/User";
 
 const AppDataSource = new DataSource(
     {
