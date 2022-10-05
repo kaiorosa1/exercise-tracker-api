@@ -24,7 +24,7 @@ class CategoryController {
         });
 
         await categoryRepository.save(user);
-        return response.json(user);
+        return response.status(201).json({ message: "Category Created!", data: user });
     }
 }
 
