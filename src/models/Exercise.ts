@@ -9,7 +9,13 @@ class Exercise {
     id?: string;
 
     @Column()
+    title: string;
+
+    @Column()
     duration: string;
+
+    @Column()
+    description: string;
     
     @Column()
     date: Date;
