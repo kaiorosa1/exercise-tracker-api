@@ -1,30 +1,19 @@
 import { Request, Response } from "express";
+import { container } from "tsyringe";
 import { Manager } from "../database";
 import { User } from "../models/User";
+import { UserService } from "../services/UserService";
 
 class UsersController {
-
+    // see more about Syringe (Dependency injection manager)
+    
     async create(request: Request, response: Response) {
         const { name, email, password } = request.body;
-        const userRepository = Manager.getRepository(User);
 
-        const userAlreadyExists = await userRepository.findOne(
-            {
-                where: { email }
-            }
-        );
+        const userService = container.resolve(UserService);
 
-        if (userAlreadyExists) {
-            return response.status(400).json({ error: "User Already exists!" })
-        }
+        const user = await userService.create({ name, email, password });
 
-        const user = userRepository.create({
-            name,
-            email,
-            password
-        });
-
-        await userRepository.save(user);
         return response.status(201).json({ message: "User Created!", data: user });
     }
 
@@ -74,7 +63,7 @@ class UsersController {
 
     async delete(request: Request, response: Response) {
         const { id } = request.params;
-        
+
         const userRepository = Manager.getRepository(User);
 
         const user = await userRepository.findOne(

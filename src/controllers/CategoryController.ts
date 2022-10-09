@@ -47,7 +47,7 @@ class CategoryController {
 
     async update(request: Request, response: Response) {
         const { id } = request.params;
-        const { name,  description } = request.body;
+        const { name, description } = request.body;
 
         const categoryRepository = Manager.getRepository(Category);
 
@@ -72,7 +72,7 @@ class CategoryController {
 
     async delete(request: Request, response: Response) {
         const { id } = request.params;
-        
+
         const categoryRepository = Manager.getRepository(Category);
 
         const category = await categoryRepository.findOne(
