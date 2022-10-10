@@ -1,29 +1,18 @@
 import { Request, Response } from "express";
+import { container } from "tsyringe";
 import { Manager } from "../database";
 import { Category } from "../models/Category";
+import { CategoryService } from "../services/CategoryService";
 
 class CategoryController {
 
     async create(request: Request, response: Response) {
         const { name, description } = request.body;
-        const categoryRepository = Manager.getRepository(Category);
 
-        const categoryAlreadyExists = await categoryRepository.findOne(
-            {
-                where: { name }
-            }
-        );
+        const categoryService = container.resolve(CategoryService);
 
-        if (categoryAlreadyExists) {
-            return response.status(400).json({ error: "Category Already exists!" })
-        }
+        const category = await categoryService.create({ name, description });
 
-        const category = categoryRepository.create({
-            name,
-            description
-        });
-
-        await categoryRepository.save(category);
         return response.status(201).json({ message: "Category Created!", data: category });
     }
 
