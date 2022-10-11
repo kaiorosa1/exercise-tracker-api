@@ -1,6 +1,4 @@
 import { inject, injectable } from "tsyringe";
-import { Manager } from "../database";
-import { User } from "../models/User";
 import { ICategoriesRepository } from "../repositories/ICategoriesRepository";
 
 @injectable()

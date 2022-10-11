@@ -1,5 +1,6 @@
 import { Repository } from "typeorm";
 import { Manager } from "../../../database";
+import { ICreateUserDTO } from "../../../dtos/ICreateUserDTO";
 import { User } from "../../../models/User";
 import { IUsersRepository } from "../../IUsersRepository";
 
@@ -12,7 +13,7 @@ class UsersRepository implements IUsersRepository{
         this.repository = Manager.getRepository(User);
     }
 
-    async create({ name, email, password }): Promise<User> {
+    async create({ name, email, password }: ICreateUserDTO): Promise<User> {
 
         const userAlreadyExists = await this.repository.findOne(
             {

@@ -1,6 +1,8 @@
 import { container } from "tsyringe";
 import { ICategoriesRepository } from "../repositories/ICategoriesRepository";
+import { IExercisesRepository } from "../repositories/IExercisesRepository";
 import { CategoriesRepository } from "../repositories/Implementations/CategoriesRepository/CategoriesRepository";
+import { ExercisesRepository } from "../repositories/Implementations/ExercisesRepository/ExercisesRepository";
 import { UsersRepository } from "../repositories/Implementations/UsersRepository/UsersRepository";
 import { IUsersRepository } from "../repositories/IUsersRepository";
 
@@ -15,7 +17,7 @@ container.registerSingleton<ICategoriesRepository>(
     CategoriesRepository
 );
 
-// container.registerSingleton<IExercisesRepository>(
-//     "ExercisesRepository",
-//     ExercisesRepository
-// );
+container.registerSingleton<IExercisesRepository>(
+    "ExercisesRepository",
+    ExercisesRepository
+);

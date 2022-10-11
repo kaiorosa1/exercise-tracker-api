@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
+import { container } from "tsyringe";
 import { Manager } from "../database";
 import { Exercise } from "../models/Exercise";
+import { ExerciseService } from "../services/ExerciseService";
 
 class ExerciseController {
 
@@ -14,19 +16,17 @@ class ExerciseController {
             category_id
         } = request.body;
 
-        const exerciseRepository = Manager.getRepository(Exercise);
-
-        const exercise = exerciseRepository.create({
+        const exerciseService = container.resolve(ExerciseService);
+        
+        const exercise = await exerciseService.create({
             title,
             duration,
             description,
             date,
             user_id,
             category_id
-
         });
 
-        await exerciseRepository.save(exercise);
         return response.status(201).json({ message: "Exercise Created!", data: exercise });
     }
 

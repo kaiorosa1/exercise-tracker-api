@@ -1,5 +1,6 @@
 import { Repository } from "typeorm";
 import { Manager } from "../../../database";
+import { ICreateCategoryDTO } from "../../../dtos/ICreateCategory";
 import { Category } from "../../../models/Category";
 import { ICategoriesRepository } from "../../ICategoriesRepository";
 
@@ -11,8 +12,8 @@ class CategoriesRepository implements ICategoriesRepository {
         this.repository = Manager.getRepository(Category);
     }
 
-    async create({name, description}): Promise<Category> {
-        
+    async create({ name, description }: ICreateCategoryDTO): Promise<Category> {
+
         const categoryAlreadyExists = await this.repository.findOne(
             {
                 where: { name }
