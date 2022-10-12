@@ -4,7 +4,7 @@ import { IExercisesRepository } from "../repositories/IExercisesRepository";
 @injectable()
 class ExerciseService {
     constructor(
-        @inject("ExerciseRepository")
+        @inject("ExercisesRepository")
         private exercisesRepository: IExercisesRepository
     ) { }
 

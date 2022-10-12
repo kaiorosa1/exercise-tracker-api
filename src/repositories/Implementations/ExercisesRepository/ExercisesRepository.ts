@@ -11,8 +11,38 @@ class ExercisesRepository implements IExercisesRepository {
         this.repository = Manager.getRepository(Exercise);
     }
 
-    create(data: ICreateExerciseDTO): Promise<Exercise> {
-        throw new Error("Method not implemented.");
+    async create({
+        title,
+        duration,
+        description,
+        date,
+        user_id,
+        category_id
+    }: ICreateExerciseDTO): Promise<Exercise> {
+
+        const exerciseAlreadyExists = await this.repository.findOne(
+            {
+                where: { title }
+            }
+        );
+
+        // TODO: handle errors
+        // if (userAlreadyExists) {
+        //     return response.status(400).json({ error: "User Already exists!" })
+        // }
+
+        const exercise = this.repository.create({
+            title,
+            duration,
+            description,
+            date,
+            user_id,
+            category_id
+        });
+
+        await this.repository.save(exercise);
+
+        return exercise;
     }
 
 }
