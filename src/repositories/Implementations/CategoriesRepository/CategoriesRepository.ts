@@ -1,6 +1,7 @@
 import { Repository } from "typeorm";
 import { Manager } from "../../../database";
 import { ICreateCategoryDTO } from "../../../dtos/ICreateCategory";
+import { AppError } from "../../../errors/AppError";
 import { Category } from "../../../models/Category";
 import { ICategoriesRepository } from "../../ICategoriesRepository";
 
@@ -20,9 +21,9 @@ class CategoriesRepository implements ICategoriesRepository {
             }
         );
 
-        // if (categoryAlreadyExists) {
-        //     return response.status(400).json({ error: "Category Already exists!" })
-        // }
+        if (categoryAlreadyExists) {
+            throw new AppError("Category Already Exists!");
+        }
 
         const category = this.repository.create({
             name,

@@ -1,6 +1,7 @@
 import { Repository } from "typeorm";
 import { Manager } from "../../../database";
 import { ICreateExerciseDTO } from "../../../dtos/ICreateExerciseDTO";
+import { AppError } from "../../../errors/AppError";
 import { Exercise } from "../../../models/Exercise";
 import { IExercisesRepository } from "../../IExercisesRepository";
 
@@ -26,10 +27,10 @@ class ExercisesRepository implements IExercisesRepository {
             }
         );
 
-        // TODO: handle errors
-        // if (userAlreadyExists) {
-        //     return response.status(400).json({ error: "User Already exists!" })
-        // }
+
+        if (exerciseAlreadyExists) {
+            throw new AppError("Exercise Already Exists!");
+        }
 
         const exercise = this.repository.create({
             title,

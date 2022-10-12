@@ -1,12 +1,12 @@
 import { Repository } from "typeorm";
 import { Manager } from "../../../database";
 import { ICreateUserDTO } from "../../../dtos/ICreateUserDTO";
+import { AppError } from "../../../errors/AppError";
 import { User } from "../../../models/User";
 import { IUsersRepository } from "../../IUsersRepository";
 
+class UsersRepository implements IUsersRepository {
 
-class UsersRepository implements IUsersRepository{
-    
     private repository: Repository<User>;
 
     constructor() {
@@ -21,10 +21,10 @@ class UsersRepository implements IUsersRepository{
             }
         );
 
-        // TODO: handle errors
-        // if (userAlreadyExists) {
-        //     return response.status(400).json({ error: "User Already exists!" })
-        // }
+
+        if (userAlreadyExists) {
+            throw new AppError("User Already Exists!");
+        }
 
         const user = this.repository.create({
             name,
