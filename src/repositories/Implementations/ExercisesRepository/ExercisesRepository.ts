@@ -11,6 +11,16 @@ class ExercisesRepository implements IExercisesRepository {
     constructor() {
         this.repository = Manager.getRepository(Exercise);
     }
+    
+    find(id: string): Promise<Exercise> {
+        throw new Error("Method not implemented.");
+    }
+    update(id: string, data: ICreateExerciseDTO): Promise<Exercise> {
+        throw new Error("Method not implemented.");
+    }
+    delete(id: string): Promise<Exercise> {
+        throw new Error("Method not implemented.");
+    }
 
     async create({
         title,

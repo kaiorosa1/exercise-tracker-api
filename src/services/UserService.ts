@@ -19,6 +19,13 @@ class UserService {
 
         return user;
     }
+
+    async find(id: string) {
+
+        const user = await this.usersRepository.find(id);
+        
+        return user;
+    }
 }
 
 export { UserService }

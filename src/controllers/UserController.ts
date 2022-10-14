@@ -5,7 +5,6 @@ import { User } from "../models/User";
 import { UserService } from "../services/UserService";
 
 class UsersController {
-    // see more about Syringe (Dependency injection manager)
     
     async create(request: Request, response: Response) {
         const { name, email, password } = request.body;
@@ -20,17 +19,9 @@ class UsersController {
     async find(request: Request, response: Response) {
         const { id } = request.params;
 
-        const userRepository = Manager.getRepository(User);
+        const userService = container.resolve(UserService);
 
-        const foundUser = await userRepository.findOne(
-            {
-                where: { id }
-            }
-        );
-
-        if (!foundUser) {
-            return response.status(400).json({ error: "User does not exist!" })
-        }
+        const foundUser = await userService.find(id);
 
         return response.json({ message: "User Found!", data: foundUser });
     }

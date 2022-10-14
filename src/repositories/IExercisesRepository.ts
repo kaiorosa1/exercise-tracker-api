@@ -2,9 +2,12 @@ import { ICreateExerciseDTO } from "../dtos/ICreateExerciseDTO";
 import { Exercise } from "../models/Exercise";
 
 interface IExercisesRepository {
-    //TODO: review all the users methods and DTOs
-    create(data: ICreateExerciseDTO): Promise<Exercise>;
 
+    create(data: ICreateExerciseDTO): Promise<Exercise>;
+    find(id: string): Promise<Exercise>;
+    update(id: string, data: ICreateExerciseDTO): Promise<Exercise>;
+    delete(id: string): Promise<Exercise>;
+    
 }
 
 export { IExercisesRepository }
