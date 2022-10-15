@@ -12,9 +12,6 @@ class ExercisesRepository implements IExercisesRepository {
         this.repository = Manager.getRepository(Exercise);
     }
     
-    find(id: string): Promise<Exercise> {
-        throw new Error("Method not implemented.");
-    }
     update(id: string, data: ICreateExerciseDTO): Promise<Exercise> {
         throw new Error("Method not implemented.");
     }
@@ -54,6 +51,21 @@ class ExercisesRepository implements IExercisesRepository {
         await this.repository.save(exercise);
 
         return exercise;
+    }
+
+    async find(id: string): Promise<Exercise> {
+
+        const foundExercise = await this.repository.findOne(
+            {
+                where: { id }
+            }
+        );
+
+        if (!foundExercise) {
+            throw new AppError("Exercise does not exist!");
+        }
+
+        return foundExercise;
     }
 
 }

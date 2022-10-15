@@ -33,17 +33,9 @@ class ExerciseController {
     async find(request: Request, response: Response) {
         const { id } = request.params;
 
-        const exerciseRepository = Manager.getRepository(Exercise);
+        const exerciseService = container.resolve(ExerciseService);
 
-        const foundExercise = await exerciseRepository.findOne(
-            {
-                where: { id }
-            }
-        );
-
-        if (!foundExercise) {
-            return response.status(400).json({ error: "Exercise does not exist!" })
-        }
+        const foundExercise = await exerciseService.find(id);
 
         return response.json({ message: "Exercise Found!", data: foundExercise });
     }

@@ -29,6 +29,12 @@ class ExerciseService {
         return exercise;
     }
 
+    async find(id: string) {
+        
+        const exercise = await this.exercisesRepository.find(id);
+
+        return exercise;
+    }
 }
 
 export { ExerciseService }

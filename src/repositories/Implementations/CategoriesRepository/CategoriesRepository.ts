@@ -13,9 +13,6 @@ class CategoriesRepository implements ICategoriesRepository {
         this.repository = Manager.getRepository(Category);
     }
     
-    find(id: string): Promise<Category> {
-        throw new Error("Method not implemented.");
-    }
     update(id: string, data: ICreateCategoryDTO): Promise<Category> {
         throw new Error("Method not implemented.");
     }
@@ -43,6 +40,22 @@ class CategoriesRepository implements ICategoriesRepository {
         await this.repository.save(category);
 
         return category;
+
+    }
+
+    async find(id: string): Promise<Category> {
+
+        const foundCategory = await this.repository.findOne(
+            {
+                where: { id }
+            }
+        );
+
+        if (!foundCategory) {
+            new AppError("Category does not exist!");
+        }
+
+        return foundCategory;
 
     }
 

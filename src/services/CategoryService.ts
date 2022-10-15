@@ -11,12 +11,19 @@ class CategoryService {
 
     async create({ name, description }) {
 
-        const user = await this.categoriesRepository.create({
+        const category = await this.categoriesRepository.create({
             name,
             description
         });
 
-        return user;
+        return category;
+    }
+
+    async find(id: string) {
+
+        const category = await this.categoriesRepository.find(id);
+
+        return category;
     }
 }
 

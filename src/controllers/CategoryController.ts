@@ -19,18 +19,11 @@ class CategoryController {
     async find(request: Request, response: Response) {
         const { id } = request.params;
 
-        const categoryRepository = Manager.getRepository(Category);
+        const categoryService = container.resolve(CategoryService);
 
-        const foundCategory = await categoryRepository.findOne(
-            {
-                where: { id }
-            }
-        );
+        const foundCategory = await categoryService.find(id);
 
-        if (!foundCategory) {
-            return response.status(400).json({ error: "Category does not exist!" })
-        }
-
+       
         return response.json({ message: "Category Found!", data: foundCategory });
     }
 
