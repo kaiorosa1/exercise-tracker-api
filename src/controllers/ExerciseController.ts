@@ -17,7 +17,7 @@ class ExerciseController {
         } = request.body;
 
         const exerciseService = container.resolve(ExerciseService);
-        
+
         const exercise = await exerciseService.create({
             title,
             duration,
@@ -51,19 +51,9 @@ class ExerciseController {
             category_id
         } = request.body;
 
-        const exerciseRepository = Manager.getRepository(Exercise);
+        const exerciseService = container.resolve(ExerciseService);
 
-        const exerciseAlreadyExists = await exerciseRepository.findOne(
-            {
-                where: { id }
-            }
-        );
-
-        if (!exerciseAlreadyExists) {
-            return response.status(400).json({ error: "Must be a valid Exercise to Update!" })
-        }
-
-        await exerciseRepository.update(id, {
+        await exerciseService.update(id, {
             title,
             duration,
             description,
@@ -89,21 +79,11 @@ class ExerciseController {
     async delete(request: Request, response: Response) {
         const { id } = request.params;
 
-        const exerciseRepository = Manager.getRepository(Exercise);
+        const exerciseService = container.resolve(ExerciseService);
 
-        const exercise = await exerciseRepository.findOne(
-            {
-                where: { id }
-            }
-        );
+        await exerciseService.delete(id);
 
-        if (!exercise) {
-            return response.status(400).json({ error: "Must be a valid Exercise to delete!" })
-        }
-
-        await exerciseRepository.delete(id);
-
-        return response.json({ message: "Exercise Deleted!", data: exercise });
+        return response.json({ message: "Exercise Deleted!", data: id });
     }
 }
 

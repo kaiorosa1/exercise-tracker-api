@@ -6,7 +6,7 @@ interface ICategoriesRepository {
     create(data: ICreateCategoryDTO): Promise<Category>;
     find(id: string): Promise<Category>;
     update(id: string, data: ICreateCategoryDTO): Promise<void>;
-    delete(id: string): Promise<Category>;
+    delete(id: string): Promise<void>;
 }
 
 export { ICategoriesRepository }

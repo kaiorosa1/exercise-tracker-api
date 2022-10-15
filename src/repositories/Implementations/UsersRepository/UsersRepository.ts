@@ -53,7 +53,7 @@ class UsersRepository implements IUsersRepository {
         return foundUser;
     }
 
-    async update(id: string, {name, email, password }: ICreateUserDTO): Promise<void> {
+    async update(id: string, { name, email, password }: ICreateUserDTO): Promise<void> {
 
         const userAlreadyExists = await this.repository.findOne(
             {
@@ -74,11 +74,22 @@ class UsersRepository implements IUsersRepository {
     }
 
 
-    async delete(id: string): Promise<User> {
-        throw new Error("Method not implemented.");
+    async delete(id: string): Promise<void> {
+
+        const user = await this.repository.findOne(
+            {
+                where: { id }
+            }
+        );
+
+        if (!user) {
+            throw new AppError("Must be a valid User to delete!");
+        }
+
+        await this.repository.delete(id);
     }
 
-    
+
 }
 
 export { UsersRepository }

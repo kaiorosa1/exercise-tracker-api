@@ -23,7 +23,7 @@ class CategoryController {
 
         const foundCategory = await categoryService.find(id);
 
-       
+
         return response.json({ message: "Category Found!", data: foundCategory });
     }
 
@@ -31,22 +31,9 @@ class CategoryController {
         const { id } = request.params;
         const { name, description } = request.body;
 
-        const categoryRepository = Manager.getRepository(Category);
+        const categoryService = container.resolve(CategoryService);
 
-        const categoryAlreadyExists = await categoryRepository.findOne(
-            {
-                where: { id }
-            }
-        );
-
-        if (!categoryAlreadyExists) {
-            return response.status(400).json({ error: "Must be a valid Category to Update!" })
-        }
-
-        await categoryRepository.update(id, {
-            name,
-            description
-        });
+        await categoryService.update(id, { name, description });
 
         return response.json({ message: "Category Updated!", data: { name, description } });
     }
@@ -55,21 +42,11 @@ class CategoryController {
     async delete(request: Request, response: Response) {
         const { id } = request.params;
 
-        const categoryRepository = Manager.getRepository(Category);
+        const categoryService = container.resolve(CategoryService);
 
-        const category = await categoryRepository.findOne(
-            {
-                where: { id }
-            }
-        );
+        await categoryService.delete(id);
 
-        if (!category) {
-            return response.status(400).json({ error: "Must be a valid Category to delete!" })
-        }
-
-        await categoryRepository.delete(id);
-
-        return response.json({ message: "Category Deleted!", data: category });
+        return response.json({ message: "Category Deleted!", data: id });
     }
 }
 

@@ -5,7 +5,7 @@ import { User } from "../models/User";
 import { UserService } from "../services/UserService";
 
 class UsersController {
-    
+
     async create(request: Request, response: Response) {
         const { name, email, password } = request.body;
 
@@ -29,11 +29,11 @@ class UsersController {
     async update(request: Request, response: Response) {
         const { id } = request.params;
         const { name, email, password } = request.body;
-        
+
         const userService = container.resolve(UserService);
 
-        await userService.update(id, {name, email, password});
-        
+        await userService.update(id, { name, email, password });
+
         return response.json({ message: "User Updated!", data: { name, email, password } });
     }
 
@@ -41,21 +41,11 @@ class UsersController {
     async delete(request: Request, response: Response) {
         const { id } = request.params;
 
-        const userRepository = Manager.getRepository(User);
+        const userService = container.resolve(UserService);
 
-        const user = await userRepository.findOne(
-            {
-                where: { id }
-            }
-        );
+        await userService.delete(id);
 
-        if (!user) {
-            return response.status(400).json({ error: "Must be a valid User to delete!" })
-        }
-
-        await userRepository.delete(id);
-
-        return response.json({ message: "User Deleted!", data: user });
+        return response.json({ message: "User Deleted!", data: id });
     }
 
 }

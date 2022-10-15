@@ -45,18 +45,44 @@ class CategoriesRepository implements ICategoriesRepository {
         );
 
         if (!foundCategory) {
-            new AppError("Category does not exist!");
+            throw new AppError("Category does not exist!");
         }
 
         return foundCategory;
 
     }
-        
-    update(id: string, data: ICreateCategoryDTO): Promise<void> {
-        throw new Error("Method not implemented.");
+
+    async update(id: string, { name, description }: ICreateCategoryDTO): Promise<void> {
+
+        const categoryAlreadyExists = await this.repository.findOne(
+            {
+                where: { id }
+            }
+        );
+
+        if (!categoryAlreadyExists) {
+            throw new AppError("Must be a valid Category to Update!");
+        }
+
+        await this.repository.update(id, {
+            name,
+            description
+        });
     }
-    delete(id: string): Promise<Category> {
-        throw new Error("Method not implemented.");
+
+    async delete(id: string): Promise<void> {
+
+        const category = await this.repository.findOne(
+            {
+                where: { id }
+            }
+        );
+
+        if (!category) {
+            throw new AppError("Must be a valid Category to delete!");
+        }
+
+        await this.repository.delete(id);
     }
 
 

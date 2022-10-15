@@ -11,7 +11,7 @@ class ExercisesRepository implements IExercisesRepository {
     constructor() {
         this.repository = Manager.getRepository(Exercise);
     }
-    
+
     async create({
         title,
         duration,
@@ -61,11 +61,42 @@ class ExercisesRepository implements IExercisesRepository {
         return foundExercise;
     }
 
-    update(id: string, data: ICreateExerciseDTO): Promise<void> {
-        throw new Error("Method not implemented.");
+    async update(id: string, { title, duration, description, date, user_id, category_id }: ICreateExerciseDTO): Promise<void> {
+
+        const exerciseAlreadyExists = await this.repository.findOne(
+            {
+                where: { id }
+            }
+        );
+
+        if (!exerciseAlreadyExists) {
+            throw new AppError("Must be a valid Exercise to Update!");
+        }
+
+        await this.repository.update(id, {
+            title,
+            duration,
+            description,
+            date,
+            user_id,
+            category_id
+        });
+
     }
-    delete(id: string): Promise<Exercise> {
-        throw new Error("Method not implemented.");
+
+    async delete(id: string): Promise<void> {
+
+        const exercise = await this.repository.findOne(
+            {
+                where: { id }
+            }
+        );
+
+        if (!exercise) {
+            throw new AppError("Must be a valid Exercise to delete!");
+        }
+
+        await this.repository.delete(id);
     }
 
 }
