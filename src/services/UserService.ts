@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import { ICreateUserDTO } from "../dtos/ICreateUserDTO";
 import { IUsersRepository } from "../repositories/IUsersRepository";
 
 @injectable()
@@ -23,7 +24,21 @@ class UserService {
     async find(id: string) {
 
         const user = await this.usersRepository.find(id);
-        
+
+        return user;
+    }
+
+    async update(id: string, data: ICreateUserDTO) {
+
+        const user = await this.usersRepository.update(id, data);
+
+        return user;
+    }
+
+    async delete(id: string) {
+
+        const user = await this.usersRepository.delete(id);
+
         return user;
     }
 }

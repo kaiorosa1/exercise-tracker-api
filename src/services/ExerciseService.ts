@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import { ICreateExerciseDTO } from "../dtos/ICreateExerciseDTO";
 import { IExercisesRepository } from "../repositories/IExercisesRepository";
 
 @injectable()
@@ -30,8 +31,22 @@ class ExerciseService {
     }
 
     async find(id: string) {
-        
+
         const exercise = await this.exercisesRepository.find(id);
+
+        return exercise;
+    }
+
+    async update(id: string, data: ICreateExerciseDTO) {
+
+        const exercise = await this.exercisesRepository.update(id, data);
+
+        return exercise;
+    }
+
+    async delete(id: string) {
+
+        const exercise = await this.exercisesRepository.delete(id);
 
         return exercise;
     }

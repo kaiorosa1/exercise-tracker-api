@@ -12,13 +12,6 @@ class CategoriesRepository implements ICategoriesRepository {
     constructor() {
         this.repository = Manager.getRepository(Category);
     }
-    
-    update(id: string, data: ICreateCategoryDTO): Promise<Category> {
-        throw new Error("Method not implemented.");
-    }
-    delete(id: string): Promise<Category> {
-        throw new Error("Method not implemented.");
-    }
 
     async create({ name, description }: ICreateCategoryDTO): Promise<Category> {
 
@@ -58,6 +51,14 @@ class CategoriesRepository implements ICategoriesRepository {
         return foundCategory;
 
     }
+        
+    update(id: string, data: ICreateCategoryDTO): Promise<void> {
+        throw new Error("Method not implemented.");
+    }
+    delete(id: string): Promise<Category> {
+        throw new Error("Method not implemented.");
+    }
+
 
 }
 

@@ -29,25 +29,11 @@ class UsersController {
     async update(request: Request, response: Response) {
         const { id } = request.params;
         const { name, email, password } = request.body;
+        
+        const userService = container.resolve(UserService);
 
-        const userRepository = Manager.getRepository(User);
-
-        const userAlreadyExists = await userRepository.findOne(
-            {
-                where: { id }
-            }
-        );
-
-        if (!userAlreadyExists) {
-            return response.status(400).json({ error: "Must be a valid User to Update!" })
-        }
-
-        await userRepository.update(id, {
-            name,
-            email,
-            password
-        });
-
+        await userService.update(id, {name, email, password});
+        
         return response.json({ message: "User Updated!", data: { name, email, password } });
     }
 
