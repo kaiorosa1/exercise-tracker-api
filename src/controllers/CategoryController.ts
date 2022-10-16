@@ -1,7 +1,5 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
-import { Manager } from "../database";
-import { Category } from "../models/Category";
 import { CategoryService } from "../services/CategoryService";
 
 class CategoryController {

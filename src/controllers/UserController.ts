@@ -1,7 +1,5 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
-import { Manager } from "../database";
-import { User } from "../models/User";
 import { UserService } from "../services/UserService";
 
 class UsersController {

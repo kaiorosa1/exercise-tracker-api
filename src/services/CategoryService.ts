@@ -29,16 +29,14 @@ class CategoryService {
 
     async update(id: string, data: ICreateCategoryDTO) {
 
-        const category = await this.categoriesRepository.update(id, data);
+        await this.categoriesRepository.update(id, data);
 
-        return category;
     }
 
     async delete(id: string) {
 
-        const category = await this.categoriesRepository.delete(id);
+        await this.categoriesRepository.delete(id);
 
-        return category;
     }
 
 }

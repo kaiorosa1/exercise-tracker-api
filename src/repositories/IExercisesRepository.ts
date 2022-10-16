@@ -7,7 +7,7 @@ interface IExercisesRepository {
     find(id: string): Promise<Exercise>;
     update(id: string, data: ICreateExerciseDTO): Promise<void>;
     delete(id: string): Promise<void>;
-    
+    getExercisesByUser(user_id: string, filter: any): Promise<Exercise[]>;
 }
 
 export { IExercisesRepository }

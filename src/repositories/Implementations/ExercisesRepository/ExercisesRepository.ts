@@ -99,6 +99,19 @@ class ExercisesRepository implements IExercisesRepository {
         await this.repository.delete(id);
     }
 
+    // TODO: apply filter on the exercises by user
+    async getExercisesByUser(user_id: string, filter: any): Promise<Exercise[]> {
+
+        const userExercises = await this.repository.find(
+            {
+                where: { user_id }
+            }
+        );
+
+        return userExercises;
+
+    }
+
 }
 
 export { ExercisesRepository }

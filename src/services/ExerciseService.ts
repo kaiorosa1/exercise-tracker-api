@@ -39,17 +39,23 @@ class ExerciseService {
 
     async update(id: string, data: ICreateExerciseDTO) {
 
-        const exercise = await this.exercisesRepository.update(id, data);
+        await this.exercisesRepository.update(id, data);
 
-        return exercise;
     }
 
     async delete(id: string) {
 
-        const exercise = await this.exercisesRepository.delete(id);
+        await this.exercisesRepository.delete(id);
 
-        return exercise;
     }
+
+    async getExercisesByUser(user_id: string, filter: any) {
+        
+        const userExercises = await this.exercisesRepository.getExercisesByUser(user_id, filter);
+
+        return userExercises;
+    }
+
 }
 
 export { ExerciseService }

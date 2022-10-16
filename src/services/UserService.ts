@@ -30,17 +30,16 @@ class UserService {
 
     async update(id: string, data: ICreateUserDTO) {
 
-        const user = await this.usersRepository.update(id, data);
+        await this.usersRepository.update(id, data);
 
-        return user;
     }
 
     async delete(id: string) {
 
-        const user = await this.usersRepository.delete(id);
+        await this.usersRepository.delete(id);
 
-        return user;
     }
+
 }
 
 export { UserService }
