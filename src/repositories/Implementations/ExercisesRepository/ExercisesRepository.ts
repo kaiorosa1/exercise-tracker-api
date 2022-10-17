@@ -1,6 +1,7 @@
-import { Repository } from "typeorm";
+import { Between, LessThanOrEqual, Raw, Repository } from "typeorm";
 import { Manager } from "../../../database";
 import { ICreateExerciseDTO } from "../../../dtos/ICreateExerciseDTO";
+import { IFilterExerciseDTO } from "../../../dtos/IFilterExerciseDTO";
 import { AppError } from "../../../errors/AppError";
 import { Exercise } from "../../../models/Exercise";
 import { IExercisesRepository } from "../../IExercisesRepository";
@@ -99,12 +100,24 @@ class ExercisesRepository implements IExercisesRepository {
         await this.repository.delete(id);
     }
 
-    // TODO: apply filter on the exercises by user
-    async getExercisesByUser(user_id: string, filter: any): Promise<Exercise[]> {
+    async getExercisesByUser(user_id: string, filter: IFilterExerciseDTO): Promise<Exercise[]> {
+        if(!("date_from" in filter)){
+            filter['date_from'] = "1900-01-01"
+        }
+
+        if(!("date_to" in filter)){
+            filter['date_to'] = "now()"
+        }
 
         const userExercises = await this.repository.find(
             {
-                where: { user_id }
+                where: [
+                    {
+                        user_id,
+                        category_id: filter['category_id'],
+                        date: Raw((alias) => `${alias} >= :dateFrom AND ${alias} <= :dateTo`, { dateFrom: filter['date_from'], dateTo: filter['date_to']})
+                    }
+                ]
             }
         );
 

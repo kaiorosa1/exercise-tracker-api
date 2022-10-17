@@ -87,7 +87,7 @@ class ExerciseController {
 
     async getExercisesByUser(request: Request, response: Response) {
 
-        const { user_id, date_from, date_to } = request.query;
+        const { user_id, date_from, date_to, category_id } = request.query;
 
         if (!user_id) {
             throw new AppError("user_id is required!");
@@ -101,6 +101,10 @@ class ExerciseController {
 
         if (date_to) {
             filter = { ...filter, date_to };
+        }
+
+        if (category_id) {
+            filter = { ...filter, category_id };
         }
 
         const exerciseService = container.resolve(ExerciseService);
