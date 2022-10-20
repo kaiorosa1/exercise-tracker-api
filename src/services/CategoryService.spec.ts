@@ -1,14 +1,15 @@
+import { CategoriesRepositoryInMemory } from "../repositories/Implementations/CategoriesRepository/CategoriesRepositoryInMemory";
 import { CategoryService } from "./CategoryService";
 
 
-// let categoriesRepositoryInMemory: CategoriesRepositoryInMemory;
+let categoriesRepositoryInMemory: CategoriesRepositoryInMemory;
 let categoriesService: CategoryService;
 
 describe("Create a new category", () => {
     
     beforeEach(() => {
-        // categoriesRepositoryInMemory = new CategoriesRepositoryInMemory();
-        // categoryService = new CategoryService(categoriesRepositoryInMemory);
+        categoriesRepositoryInMemory = new CategoriesRepositoryInMemory();
+        categoriesService = new CategoryService(categoriesRepositoryInMemory);
     });
 
     it("should be able to create a new category", async () => {
@@ -17,8 +18,8 @@ describe("Create a new category", () => {
             description: "Running Category"
         }
 
-        // const result = await categoryService.create(category);
-        expect(category).toHaveProperty("name");
-        // expect(result).toHaveProperty("id");
+        const result = await categoriesService.create(category);
+        
+        expect(result).toHaveProperty("id");
     });
 });
