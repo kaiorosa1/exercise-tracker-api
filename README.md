@@ -75,6 +75,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+This is a simple CRUD project for users to log their exercises.
+
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
 
@@ -93,12 +95,12 @@
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+If you want to run this project locally you need to have Node.js (At least 14.x) installed in your machine. 
+
 * npm
   ```sh
   npm install npm@latest -g
@@ -106,18 +108,13 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
    git clone https://github.com/kaiorosa1/exercise-tracker-api.git
    ```
-3. Install NPM packages
+2. Install NPM packages
    ```sh
    npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -127,7 +124,16 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+In this project you will be able to create a user and then log their
+exercises
+
+To create a user you send a POST to /users with the following payload as an example: 
+
+{
+	"name": "John Smith",
+	"email": "johnsmith@email.com",
+	"password": "senhanaosalvaassim"
+}
 
 _For more examples, please refer to the [Documentation](https://example.com)_
 
@@ -138,10 +144,10 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [ ] Create Users
+- [ ] Create Categories
+- [ ] Create Exercises
+
 
 See the [open issues](https://github.com/kaiorosa1/exercise-tracker-api/issues) for a full list of proposed features (and known issues).
 
