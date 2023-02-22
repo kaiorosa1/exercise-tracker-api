@@ -78,6 +78,212 @@
                     }
                 }
             }
+        },
+        "/categories": {
+            "post": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Create a category",
+                "description": "Create a new category",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                    
+                                },
+                                "example": {
+                                    "name": "Category 1",
+                                    "email": "category description"
+                                    
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Category already exists"
+                    }
+                }
+            }
+        },
+        "/categories/{category_id}": {
+            "get": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Get specfic category",
+                "description": "Show category info",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "category_id",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404":{
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
+        "/exercises": {
+            "post": {
+                "tags": [
+                    "Exercise"
+                ],
+                "summary": "Create an exercise",
+                "description": "Create a new exercise",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "duration": {
+                                        "type": "string"
+                                    },
+                                    "date": {
+                                        "type": "string"
+                                    },
+                                    "user_id": {
+                                        "type": "string"
+                                    },
+                                    "category_id": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "title": "Exercise from Month X",
+                                    "description": "This is another test description",
+                                    "duration": "25 min",
+                                    "date": "2022-07-15",
+                                    "user_id": "95c48dd7-1176-4092-8297-23d17ab4f02d",
+                                    "category_id": "98a58c32-5341-4405-bec9-8e9e78ce199e"
+                                    
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Category already exists"
+                    }
+                }
+            }
+        },
+        "/exercises/{exercise_id}": {
+            "get": {
+                "tags": [
+                    "Exercise"
+                ],
+                "summary": "Get specfic exericse",
+                "description": "Show exercise info",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "exercise_id",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404":{
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
+        "/exercises/log": {
+            "get": {
+                "tags": [
+                    "Exercise"
+                ],
+                "summary": "Get exercises by user",
+                "description": "Show exercise info by user",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "user_id",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        },
+                        "required": true
+                    },
+                    {
+                        "in": "query",
+                        "name": "category_id",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        },
+                        "required": false
+                    },
+                    {
+                        "in": "query",
+                        "name": "date_from",
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        },
+                        "required": false
+                    },
+                    {
+                        "in": "query",
+                        "name": "date_to",
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        },
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404":{
+                        "description": "Not found"
+                    }
+                }
+            }
         }
     }
         
