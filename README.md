@@ -114,9 +114,12 @@ If you want to run this project locally you need to have Node.js (At least 14.x)
    ```
 2. Install NPM packages
    ```sh
-   npm install
+   yarn install
    ```
-
+3. Run the project
+   ```sh
+   yarn dev
+   ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
