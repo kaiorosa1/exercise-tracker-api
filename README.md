@@ -129,11 +129,13 @@ exercises
 
 To create a user you send a POST to /users with the following payload as an example: 
 
+```sh
 {
 	"name": "John Smith",
 	"email": "johnsmith@email.com",
 	"password": "senhanaosalvaassim"
 }
+```
 
 _For more examples, please refer to the [Documentation](https://example.com)_
 
