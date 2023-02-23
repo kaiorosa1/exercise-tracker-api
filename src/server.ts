@@ -31,4 +31,4 @@ app.use((error: Error, request: Request, response: Response, next: NextFunction)
     });
 });
 
-app.listen(3333, () => console.log("Server is running!"));
+app.listen(process.env.PORT || 3333, () => console.log("Server is running!"));
