@@ -5,6 +5,9 @@
   "repository": "git@github.com:kaiorosa1/exercise-tracker-api.git",
   "author": "Kaio Rosa <kaiosrosa@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "start": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
     "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",

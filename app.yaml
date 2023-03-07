@@ -1,2 +1,4 @@
-runtime: nodejs16 # or another supported version
-vm: true
+runtime: nodejs # or another supported version
+env: flex
+runtime_config:
+  operating_system: "ubuntu20"
